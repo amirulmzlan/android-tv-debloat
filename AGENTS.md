@@ -12,8 +12,9 @@ TV, run the scripts, read the logs and screenshots. Never ask them to type comma
 reach the TV (below) — and if so, tell them plainly why before switching.
 
 
-0. **Check the TV is Android TV / Google TV first** ([docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)). Samsung Tizen, LG webOS,
-   Roku, VIDAA etc. can't be done: tell the person plainly and suggest the alternatives listed there.
+0. **Check the TV is Android TV / Google TV first** ([docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)). **LG webOS**: no debloat;
+   the home screen is possible via webos-vibehack (see COMPATIBILITY.md for its limits) — follow that project's README, not
+   these scripts. Samsung Tizen, Roku, VIDAA etc. can't be done: tell the person plainly and suggest the alternatives there.
 
 1. **Back up before changing anything** (`scripts/01-connect-and-backup.sh`). Read the backup before planning.
 2. **Never uninstall system packages.** Disable with `pm disable-user --user 0` (via `scripts/02-debloat.sh`),
