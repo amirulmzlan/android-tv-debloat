@@ -2,6 +2,17 @@
 
 **Let an AI agent clean up your Android TV — safely, step by step — and give it a clean, Apple TV–style home screen.**
 
+![Android TV](https://img.shields.io/badge/Android%20TV-tested%20%E2%9C%93-3DDC84?logo=androidtv&logoColor=white)
+![Google TV](https://img.shields.io/badge/Google%20TV-should%20work-4285F4?logo=googletv&logoColor=white)
+![Launcher](https://img.shields.io/badge/launcher-Android%209%2B-555)
+![Not Tizen/webOS](https://img.shields.io/badge/Samsung%20Tizen%20%C2%B7%20LG%20webOS-not%20supported-lightgrey)
+
+> ✅ **Works on Android TV.** Tested end to end on a real Android TV — Xiaomi Mi TV (MiTV-MSSP2, Android TV 9):
+> 28 bloat packages disabled, ad-blocking DNS on, TvHome set as the home screen, and HDMI inputs, Live TV, the remote,
+> Bluetooth, Chromecast and all streaming apps still working. Other Android TV / Google TV brands use the same system
+> and should work the same way ([compatibility](docs/COMPATIBILITY.md)). Samsung (Tizen) and LG (webOS) TVs aren't Android,
+> so they can't.
+
 ![Before and after](docs/img/before-after.png)
 
 Smart TVs ship with tracking services, ad rows, auto-installers and apps you never use, all competing for about
