@@ -1,0 +1,18 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'net.amirul.tvhome'
+    compileSdk 33
+    buildToolsVersion "36.0.0"
+    defaultConfig {
+        applicationId 'net.amirul.tvhome'
+        minSdk 28          // TV runs Android 9
+        targetSdk 33
+        versionCode 1
+        versionName '1.0'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+dependencies { implementation 'androidx.recyclerview:recyclerview:1.3.1' }

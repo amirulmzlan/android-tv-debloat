@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- only for the football fixtures card (fetched at most every 3 hours) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- needed on Android 9 to read the Wi-Fi network name; granted by the install script -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Android 11+ package visibility: without this the app grid comes up empty -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <package android:name="com.mediatek.wwtv.tvcenter" />
+    </queries>
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:allowBackup="false"
+        android:theme="@style/Home">
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
+            android:stateNotNeeded="true"
+            android:excludeFromRecents="true"
+            android:resumeWhilePausing="true"
+            android:screenOrientation="landscape"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout|uiMode|locale|layoutDirection">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

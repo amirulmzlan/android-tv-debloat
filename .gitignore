@@ -1,0 +1,13 @@
+# per-run data: backups, logs, screenshots and the TV's IP stay on your computer
+backup/
+state/
+shots/
+.tv_ip
+# build output
+launcher/**/build/
+launcher/.gradle/
+launcher/local.properties
+*.apk
+.DS_Store
+lists/*
+!lists/README.md

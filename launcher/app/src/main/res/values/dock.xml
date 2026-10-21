@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default dock apps, left to right (the first ones installed are used; gaps are filled from the grid).
+         Change without rebuilding: put dock=... in home.conf on the TV (see Config.java / README). -->
+    <string-array name="dock_packages">
+        <item>com.google.android.youtube.tv</item>
+        <item>com.netflix.ninja</item>
+        <item>com.amazon.amazonvideo.livingroom</item>
+        <item>com.disney.disneyplus</item>
+        <item>com.google.android.youtube.tvmusic</item>
+        <item>com.spotify.tv.android</item>
+    </string-array>
+    <!-- Football card: ESPN team id + name. Empty = no card. Set in home.conf: team_id=364 / team_name=Liverpool FC -->
+    <string name="fixture_team_id"></string>
+    <string name="fixture_team_name"></string>
+    <color name="fixture_accent">#FFC8102E</color>
+</resources>
