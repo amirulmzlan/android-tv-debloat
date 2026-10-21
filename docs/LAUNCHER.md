@@ -1,5 +1,7 @@
 # TvHome launcher
 
+Design based on the launcher from [tv-vibehack](https://github.com/Gathin23/tv-vibehack) by [Gathin](https://github.com/Gathin23).
+
 A small native Android TV home screen (Java, AndroidX RecyclerView, minSdk 28 / Android 9+), ~30-40 MB RAM.
 No blur, no video, no polling: the clock and Wi-Fi name update from system broadcasts; the optional football card
 fetches once every 3 hours at most, only while the home screen is showing.

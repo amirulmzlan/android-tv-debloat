@@ -2,6 +2,9 @@
 
 **Let an AI agent clean up your Android TV — safely, step by step — and give it a clean, Apple TV–style home screen.**
 
+> Based on **[tv-vibehack](https://github.com/Gathin23/tv-vibehack)** by **[Gathin](https://github.com/Gathin23)** — most of this
+> project comes from there, with modifications by [amirulmzlan](https://github.com/amirulmzlan). See [Credits](#credits).
+
 ![Android TV](https://img.shields.io/badge/Android%20TV-tested%20%E2%9C%93-3DDC84?logo=androidtv&logoColor=white)
 ![Google TV](https://img.shields.io/badge/Google%20TV-should%20work-4285F4?logo=googletv&logoColor=white)
 ![Launcher](https://img.shields.io/badge/launcher-Android%209%2B-555)
@@ -142,6 +145,15 @@ Android. Full list, partial cases (older Android, China-market firmware, Fire TV
 
 Tried it on another TV? Open an issue or pull request with an `examples/` file — that's how the playbook gets better.
 
+## Credits
+
+Most of this project comes from **[tv-vibehack](https://github.com/Gathin23/tv-vibehack)** by
+**[Gathin](https://github.com/Gathin23)** (MIT) — the idea of an AI-agent playbook for debloating Android TVs and the
+Apple TV–style launcher design. This repository adapts it, with modifications by
+[amirulmzlan](https://github.com/amirulmzlan): a tested run on a Xiaomi MiTV-MSSP2, the "just Claude" quick start,
+`home.conf` settings, the football next-match card, boxes-and-sticks support and the packaging here.
+Go star the original.
+
 ## License
 
-Code: MIT ([LICENSE](LICENSE)). Font: Outfit, SIL Open Font License ([launcher/app/src/main/assets/fonts/OFL.txt](launcher/app/src/main/assets/fonts/OFL.txt)).
+Code: MIT ([LICENSE](LICENSE)), including the original tv-vibehack notice (Copyright (c) 2026 Gathin). Font: Outfit, SIL Open Font License ([launcher/app/src/main/assets/fonts/OFL.txt](launcher/app/src/main/assets/fonts/OFL.txt)).
