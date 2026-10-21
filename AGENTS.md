@@ -29,6 +29,20 @@ and prove every step with a screenshot pulled from the TV. **Nothing you do shou
 8. **Talk plainly.** Tell the person when to look at the TV (the "Allow USB debugging?" prompt), what changed,
    and what's next. Don't dump logs on them.
 
+## Setting up the computer (do this yourself — the person may only have pasted one sentence)
+
+1. **Get the kit.** If you're not already inside this repository, clone it:
+   `git clone https://github.com/amirulmzlan/android-tv-debloat.git` and work from that folder.
+2. **Install adb** if `scripts/common.sh`'s `find_adb` can't find it — ask before installing software:
+   macOS `brew install --cask android-platform-tools` (install Homebrew first if missing, with the person's OK) ·
+   Debian/Ubuntu `sudo apt install adb` · Fedora `sudo dnf install android-tools` ·
+   Windows `winget install Google.PlatformTools`, then open a new shell so `adb` is on PATH.
+3. **Windows:** run the scripts with Git Bash (`bash scripts/<name>.sh`), which Claude Code on Windows uses. They're
+   written to work there (no `nc`/`arp` assumptions). If Windows Firewall prompts for `adb.exe`, tell the person to allow
+   it on private networks.
+4. Ask for the TV model (if not given) and check it's Android TV / Google TV (rule 0), then walk the person through
+   turning on developer mode and USB debugging (README step 1) before phase 0.
+
 ## Phases
 
 | # | Phase | Script | Notes |

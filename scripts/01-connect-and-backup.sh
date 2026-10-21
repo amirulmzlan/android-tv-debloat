@@ -5,31 +5,25 @@ set -u
 cd "$(dirname "$0")/.."
 
 # --- locate adb ---
-ADB=$(command -v adb || true)
-for p in "$HOME/Library/Android/sdk/platform-tools/adb" /opt/homebrew/bin/adb /usr/local/bin/adb; do
-  [ -z "$ADB" ] && [ -x "$p" ] && ADB="$p"
-done
-if [ -z "$ADB" ]; then
-  echo "!! adb not found. Install it with:  brew install --cask android-platform-tools   then re-run."; exit 1
-fi
+source "$(dirname "$0")/common.sh"
+find_adb || exit 1
 echo "== adb: $ADB ($("$ADB" version | head -1))"
 
 # --- find the TV ---
 IP="${1:-}"
 if [ -z "$IP" ]; then
   echo "== No IP given. Probing devices in the ARP table for an open port 5555..."
-  ping -c1 -t1 255.255.255.255 >/dev/null 2>&1
-  for h in $(arp -an | sed -n 's/.*(\([0-9.]*\)).*/\1/p' | sort -u); do
-    if nc -G1 -z "$h" 5555 2>/dev/null; then echo "   port 5555 open on $h"; IP="$h"; fi
+  for h in $(lan_hosts); do
+    if port_open "$h" 5555; then echo "   port 5555 open on $h"; IP="$h"; fi
   done
   echo "== ARP table (for reference):"; arp -a
 fi
 if [ -z "$IP" ]; then
-  echo "!! Couldn't find a device with ADB open. On the TV: Settings > Device Preferences > About > tap Build 7 times,"
+  echo "!! Couldn't find a device with ADB open. On the TV: Settings > Device Preferences > About > press OK on Build 7 times,"
   echo "   then Developer options > turn on USB debugging (and Network/ADB debugging if listed). Find its IP under"
   echo "   Settings > Network, then run:  ./scripts/01-connect-and-backup.sh <TV_IP>"; exit 1
 fi
-echo "== TV IP: $IP"; nc -G2 -vz "$IP" 5555
+echo "== TV IP: $IP  (port 5555 $(port_open "$IP" 5555 && echo open || echo "closed - turn on USB/Network debugging"))"
 
 # --- connect ---
 echo ""

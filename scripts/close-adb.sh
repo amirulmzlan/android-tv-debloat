@@ -16,5 +16,5 @@ cat <<MSG
 
 MSG
 read -r -p "Press Enter once the TV has restarted... " _
-if nc -vz -w 3 "$IP_ONLY" 5555 2>/dev/null; then echo "!! Port 5555 is STILL OPEN - check Developer options again."
+if port_open "$IP_ONLY" 5555; then echo "!! Port 5555 is STILL OPEN - check Developer options again."
 else echo "   Port 5555 is closed. All done."; fi

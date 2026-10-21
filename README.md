@@ -35,25 +35,49 @@ leaves everything reversible.
 |---|---|
 | ![Home](docs/img/home.png) | ![Inputs](docs/img/inputs.png) |
 
-## How to do it (about 30–60 minutes)
+## Quick start — just Claude (about 30–60 minutes)
 
-**You need:** a Mac, Linux PC (or Windows with WSL) on the **same Wi-Fi as the TV**, and an AI agent that can run
-commands on it — e.g. [Claude Code](https://claude.com/claude-code), or the Claude desktop app with this folder connected.
+You don't need to install anything else or type any commands: Claude downloads this kit, installs the tools it needs
+and does the work. You only do the two things it physically can't — turn on developer mode on the TV and press OK
+on the TV when it asks.
 
-1. **Get this repository** onto that computer:
-   `git clone https://github.com/amirulmzlan/android-tv-debloat.git && cd android-tv-debloat`
-   (or *Code → Download ZIP* above and unzip it).
-2. **Install adb** — macOS: `brew install --cask android-platform-tools` · Debian/Ubuntu: `sudo apt install adb`.
-3. **On the TV:** Settings → Device Preferences → About → press OK on **Build** 7 times. Then Developer options →
-   turn on **USB debugging** (and **Network/ADB debugging** or **Wireless debugging** if listed). Note the TV's IP
-   address (Settings → Network).
-4. **Start your AI agent in this folder** (for Claude Code: run `claude` here) and paste the prompt from
-   **[PROMPT.md](PROMPT.md)** — fill in your TV model.
-5. Answer its questions (which apps you use, which go in the dock…) and accept the **"Allow USB debugging?"**
-   prompt on the TV when it tells you to.
+**You need:** a laptop on the **same Wi-Fi as the TV** — Mac, Windows or Linux — with
+[Claude Code](https://claude.com/claude-code) installed (on a Mac you can also use the Claude desktop app with Claude Code).
 
-The agent follows **[AGENTS.md](AGENTS.md)**. If it runs in a sandbox that can't reach your TV, it will write
-each step as a script for you to run instead ([docs/NO-LAN-ACCESS.md](docs/NO-LAN-ACCESS.md)) — slower, same result.
+1. **On the TV:** Settings → Device Preferences → About → press OK on **Build** 7 times.
+   Then Developer options → turn on **USB debugging** (and **Network/ADB debugging** or **Wireless debugging** if listed).
+2. **On the laptop:** open Claude Code (Windows: in the Claude app or a terminal; Mac/Linux: run `claude` in a terminal)
+   and say:
+
+   > Debloat my Android TV using github.com/amirulmzlan/android-tv-debloat. My TV model is ______.
+
+3. **Answer its questions** (which apps you use, what goes in the dock…) and press **OK** on the
+   **"Allow USB debugging?"** prompt on the TV when Claude tells you to.
+
+That's it. Claude backs up the TV first, shows you what it found, disables bloat in small checked batches,
+installs the new home screen, and switches debugging off at the end. Changed your mind? Tell Claude to undo it.
+
+<details>
+<summary><b>Windows notes</b></summary>
+
+Claude Code on Windows runs these scripts in Git Bash (installed with Git for Windows, which Claude Code uses).
+Claude installs adb with `winget install Google.PlatformTools`. If Windows Firewall asks about `adb.exe`, allow it on
+private networks. Not yet tested on Windows — please report how it went.
+</details>
+
+<details>
+<summary><b>Prefer to do it yourself, or using another AI agent?</b></summary>
+
+1. `git clone https://github.com/amirulmzlan/android-tv-debloat.git && cd android-tv-debloat` (or *Code → Download ZIP*).
+2. Install adb — macOS: `brew install --cask android-platform-tools` · Linux: `sudo apt install adb` ·
+   Windows: `winget install Google.PlatformTools`.
+3. Turn on developer mode and USB debugging on the TV (step 1 above) and note its IP (Settings → Network).
+4. Start any AI coding agent that can run a terminal in this folder and paste the prompt from **[PROMPT.md](PROMPT.md)**,
+   or run the scripts yourself in order (`scripts/01-…` to `scripts/06-…`, then `scripts/close-adb.sh`).
+
+The agent follows **[AGENTS.md](AGENTS.md)**. If it runs in a sandbox that can't reach your TV, it will write each step as a
+script for you to run instead ([docs/NO-LAN-ACCESS.md](docs/NO-LAN-ACCESS.md)).
+</details>
 
 ## Just the launcher (no AI)
 

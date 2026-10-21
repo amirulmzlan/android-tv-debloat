@@ -1,11 +1,8 @@
 # Shared helpers. Sourced by the other scripts.
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 mkdir -p "$ROOT/state" "$ROOT/shots"
-ADB=$(command -v adb || true)
-for p in "$HOME/Library/Android/sdk/platform-tools/adb" "$HOME/Android/Sdk/platform-tools/adb" /opt/homebrew/bin/adb /usr/local/bin/adb; do
-  [ -z "$ADB" ] && [ -x "$p" ] && ADB="$p"
-done
-[ -z "$ADB" ] && { echo "!! adb not found. macOS: brew install --cask android-platform-tools   Linux: sudo apt install adb"; exit 1; }
+source "$ROOT/scripts/common.sh"
+find_adb || exit 1
 IP="${TV_IP:-$(cat "$ROOT/.tv_ip" 2>/dev/null)}"
 [ -z "$IP" ] && { echo "!! No TV IP yet. Run ./scripts/01-connect-and-backup.sh <TV-IP> first (or set TV_IP=...)"; exit 1; }
 case "$IP" in *:*) D="$IP";; *) D="$IP:5555";; esac

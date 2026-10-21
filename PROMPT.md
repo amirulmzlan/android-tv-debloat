@@ -1,5 +1,14 @@
 # The prompt
 
+**Short version** — with Claude Code (or any agent that can run commands on a computer on the TV's Wi-Fi), this is enough:
+
+> Debloat my Android TV using github.com/amirulmzlan/android-tv-debloat. My TV model is ______.
+
+The agent clones this repository and follows AGENTS.md. The **long version** below spells out every requirement, for agents
+that don't read repositories on their own or when you want to be explicit.
+
+## Long version
+
 Copy everything in the box below into Claude (Claude Code, or the Claude desktop app with this folder connected)
 or into any AI coding agent that can run shell commands on a computer **on the same network as your TV**.
 Fill in your TV model on the first line. The agent will read the rest of this repository before touching anything.
