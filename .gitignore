@@ -11,3 +11,4 @@ launcher/local.properties
 .DS_Store
 lists/*
 !lists/README.md
+!dist/TvHome.apk

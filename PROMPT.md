@@ -41,7 +41,7 @@ Debloat
 Launcher
 - Check the TV accepts sideloaded apps first (examples/README.md lists TVs where the launcher half is
   impossible). If it's one of those, do the debloat half, say so plainly and stop retrying installs.
-- Install the TvHome launcher from this repository's latest release (or build it from launcher/),
+- Install the TvHome launcher from dist/TvHome.apk (or build it from launcher/),
   set it as the default home, and disable the stock launcher only after it works (scripts/04, scripts/05).
 - Ask me which apps go in the dock, how many columns (4 or 6), and whether I want a football club's next
   match on the home screen; write that to home.conf with scripts/06-config.sh.

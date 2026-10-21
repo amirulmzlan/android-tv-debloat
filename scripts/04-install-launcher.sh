@@ -1,6 +1,6 @@
 #!/bin/bash
 # Install the TvHome launcher on the TV and test it (opens it directly; does NOT make it the default yet).
-# Usage: ./scripts/04-install-launcher.sh            download the latest release APK from GitHub
+# Usage: ./scripts/04-install-launcher.sh            use dist/TvHome.apk (or download it from GitHub)
 #        ./scripts/04-install-launcher.sh --build    build from launcher/ (Android SDK + JDK 17 needed)
 #        ./scripts/04-install-launcher.sh <file.apk> install a specific APK
 source "$(dirname "$0")/lib.sh"
@@ -21,9 +21,14 @@ case "${1:-}" in
     cp app/build/outputs/apk/debug/app-debug.apk "$APK"; cd "$ROOT";;
   "")
     REPO="${REPO:-$(git -C "$ROOT" remote get-url origin 2>/dev/null | sed -E 's#.*github.com[:/]##; s#\.git$##')}"
-    [ -z "$REPO" ] && { echo "!! Can't tell which GitHub repo to download from. Set REPO=owner/android-tv-debloat or use --build"; exit 1; }
-    echo "== Downloading TvHome.apk from github.com/$REPO (latest release)"
-    curl -fL -o "$APK" "https://github.com/$REPO/releases/latest/download/TvHome.apk" || { echo "!! download failed"; exit 1; };;
+    REPO="${REPO:-amirulmzlan/android-tv-debloat}"
+    if [ -f "$ROOT/dist/TvHome.apk" ]; then
+      echo "== Using dist/TvHome.apk from this repository"; cp "$ROOT/dist/TvHome.apk" "$APK"
+    else
+      echo "== Downloading TvHome.apk from github.com/$REPO"
+      curl -fL -o "$APK" "https://github.com/$REPO/releases/latest/download/TvHome.apk" 2>/dev/null || \
+      curl -fL -o "$APK" "https://github.com/$REPO/raw/main/dist/TvHome.apk" || { echo "!! download failed - try --build"; exit 1; }
+    fi;;
   *) cp "$1" "$APK";;
 esac
 echo "== APK: $(wc -c < "$APK" | tr -d ' ') bytes"
