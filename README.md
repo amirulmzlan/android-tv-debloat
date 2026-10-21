@@ -82,7 +82,7 @@ Without a computer: Settings → Apps → See all apps → Show system apps → 
 | [AGENTS.md](AGENTS.md) | The playbook the agent follows (rules, phases, gotchas) |
 | `scripts/` | Backup, debloat-by-batch, DNS, launcher install/activate/config, restore, close ADB |
 | `launcher/` | TvHome source (Java, Android 9+) |
-| [docs/](docs/) | Troubleshooting, launcher settings, remote TVs via Tailscale, sandboxed agents |
+| [docs/](docs/) | Compatibility, package reference, troubleshooting, launcher settings, remote TVs via Tailscale, sandboxed agents |
 | [examples/](examples/) | Tested devices and what each needed — add yours! |
 
 ## Which TVs?

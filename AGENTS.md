@@ -40,7 +40,7 @@ and prove every step with a screenshot pulled from the TV. **Nothing you do shou
 | 4 | DNS (optional) | `03-adblock-dns.sh` / `off` | Private DNS → AdGuard; not YouTube ads |
 | 5 | Launcher | `04-install-launcher.sh` | Downloads the release APK (or `--build`), installs, opens it, tests keys |
 | 6 | Activate | `05-activate-launcher.sh` | Lists HOME apps, handles the stock launcher, sets default home, verifies |
-| 7 | Personalise | `06-config.sh` | Writes `home.conf` (dock, columns, hidden apps, football team) |
+| 7 | Personalise | `06-config.sh` | Writes `home.conf` (dock, columns, hidden apps, football team). Look at the grid screenshot: any maker helper apps showing as tiles go in `--hidden` |
 | 8 | Finish | `close-adb.sh` | Summary for the person; restore instructions |
 
 Helpers: `status.sh` (reachable? top app? Wi-Fi? crashes?), `restore.sh [pkg]`, `uninstall.sh <pkg...>`.
@@ -52,7 +52,8 @@ recommendation rows, content providers, auto-installers like `android.autoinstal
 **background services they likely don't use** (print spooler, calendar/contacts sync, bug report/feedback) ·
 **preloaded apps** (gallery, music, file browser, screensaver, games) · **streaming apps** (ask!) ·
 **keep** (everything in rule 4). Check `examples/` for a device that matches — reuse its classification,
-but still confirm against this TV's backup.
+but still confirm against this TV's backup. [docs/PACKAGES.md](docs/PACKAGES.md) lists packages
+that are common to most Android TVs and name patterns that are usually safe / usually load-bearing.
 
 ## Launcher gotchas (read before phase 5-6)
 

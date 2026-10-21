@@ -72,7 +72,12 @@ public class HomeActivity extends Activity {
     static final int TOP = 0, DOCK = 1, GRID = 2, MENU = 3;
     int COLS = 6;                       // grid columns = dock size (home.conf: columns=)
     Config conf;
-    static final String LIVE_TV = "com.mediatek.wwtv.tvcenter";
+    /** Live TV apps by maker, tried in order; otherwise whatever app handles "view TV channels". */
+    static final String[] LIVE_TV_APPS = {
+            "com.mediatek.wwtv.tvcenter",   // MediaTek-based sets (Xiaomi, many TCL/Philips/Sharp)
+            "com.sony.dtv.tvx",             // Sony Bravia
+            "com.google.android.tv",        // Google "Live Channels"
+            "com.android.tv"};              // AOSP Live TV
     /** System helpers that expose a launcher icon but aren't apps you'd open. */
     static final java.util.Set<String> HIDDEN = new java.util.HashSet<>(Arrays.asList(
             "com.mstar.netflixobserver"));
@@ -442,6 +447,9 @@ public class HomeActivity extends Activity {
                     ActivityInfo ai = ri.activityInfo;
                     String p = ai.packageName;
                     if (p.equals(getPackageName()) || map.containsKey(p) || HIDDEN.contains(p) || conf.hidden.contains(p)) continue;
+                    // Built-in apps that only have a phone-style entry (no TV entry) are system helpers
+                    // (button handlers, test tools...), not apps you'd open from the sofa. User-installed ones stay.
+                    if (Intent.CATEGORY_LAUNCHER.equals(cat) && (ai.applicationInfo.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) != 0) continue;
                     Ui.AppEntry e = new Ui.AppEntry();
                     e.pkg = p;
                     e.label = String.valueOf(ri.loadLabel(pm));
@@ -772,7 +780,7 @@ public class HomeActivity extends Activity {
             final String id = in.getId();
             addMenuRow(label, () -> switchInput(id));
         }
-        addMenuRow("Live TV", this::openLiveTv);
+        if (liveTvIntent() != null) addMenuRow("Live TV", this::openLiveTv);
 
         RectF pr = rectOf(pills[0], 1f);
         menu.setX(pr.left);
@@ -810,19 +818,35 @@ public class HomeActivity extends Activity {
     }
 
     void switchInput(String inputId) {
-        Intent i = new Intent(Intent.ACTION_VIEW, TvContract.buildChannelUriForPassthroughInput(inputId));
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Uri uri = TvContract.buildChannelUriForPassthroughInput(inputId);
+        Intent i = new Intent(Intent.ACTION_VIEW, uri).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try { startActivity(i); return; } catch (ActivityNotFoundException ignored) {}
-        Intent li = getPackageManager().getLeanbackLaunchIntentForPackage(LIVE_TV);
-        if (li != null) { li.setData(TvContract.buildChannelUriForPassthroughInput(inputId)); safeStart(li); }
+        Intent li = liveTvIntent();
+        if (li != null) { li.setData(uri); safeStart(li); }
         else Toast.makeText(this, "Can't switch input", Toast.LENGTH_SHORT).show();
     }
 
+    /** This TV's Live TV app: a known maker app, else whatever handles "view TV channels"; null if none. */
+    Intent liveTvIntent() {
+        PackageManager pm = getPackageManager();
+        for (String p : LIVE_TV_APPS) {
+            Intent li = pm.getLeanbackLaunchIntentForPackage(p);
+            if (li == null) li = pm.getLaunchIntentForPackage(p);
+            if (li != null) return li;
+        }
+        Intent v = new Intent(Intent.ACTION_VIEW, TvContract.Channels.CONTENT_URI);
+        ResolveInfo ri = pm.resolveActivity(v, 0);
+        if (ri != null && ri.activityInfo != null) {
+            String p = ri.activityInfo.packageName;
+            if (!"android".equals(p) && !getPackageName().equals(p)) return v.setPackage(p);
+        }
+        return null;
+    }
+
     void openLiveTv() {
-        Intent li = getPackageManager().getLeanbackLaunchIntentForPackage(LIVE_TV);
-        if (li == null) li = getPackageManager().getLaunchIntentForPackage(LIVE_TV);
+        Intent li = liveTvIntent();
         if (li != null) safeStart(li);
-        else safeStart(new Intent(Intent.ACTION_VIEW, TvContract.Channels.CONTENT_URI));
+        else Toast.makeText(this, "No Live TV app on this TV", Toast.LENGTH_SHORT).show();
     }
 
     // ---------------------------------------------------------------- clock, wifi, wallpaper (event-driven, no polling)
