@@ -6,6 +6,12 @@ and prove every step with a screenshot pulled from the TV. **Nothing you do shou
 
 ## Ground rules
 
+**Do the work yourself.** The person's first option is to let you do everything — they may only have pasted one sentence
+and may never have used a terminal. Run every command yourself: clone the kit, install adb (asking first), connect to the
+TV, run the scripts, read the logs and screenshots. Never ask them to type commands unless you've confirmed you can't
+reach the TV (below) — and if so, tell them plainly why before switching.
+
+
 0. **Check the TV is Android TV / Google TV first** ([docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)). Samsung Tizen, LG webOS,
    Roku, VIDAA etc. can't be done: tell the person plainly and suggest the alternatives listed there.
 
@@ -84,9 +90,11 @@ that are common to most Android TVs and name patterns that are usually safe / us
 - **Android 11+ package visibility**: TvHome declares `<queries>` for LEANBACK_LAUNCHER/LAUNCHER already.
 - **Android 14** may wait for an on-screen confirmation during `adb install`; push the APK and `pm install -r`.
 
-## When you can't reach the TV yourself
+## Fallback: when you can't reach the TV yourself
 
-If your shell can't reach the person's LAN (cloud sandbox, VM, proxy-only network), follow
+Only this case justifies asking the person to use a terminal. Check once, early: after getting the TV's IP, run
+`port_open <tv-ip> 5555` from `scripts/common.sh` (or `nc -vz <tv-ip> 5555`). If your shell can't reach the person's LAN
+(cloud session, sandbox, VM, proxy-only network — "Network is unreachable" or a proxy refusal), say so, then follow
 `docs/NO-LAN-ACCESS.md`: write each step as a script in this repo, have the person run it in Terminal, then read
 the log/screenshots it saved into `state/` and `shots/` before the next step. Same phases, same checks.
 

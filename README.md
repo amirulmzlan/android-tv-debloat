@@ -16,8 +16,8 @@
 ![Before and after](docs/img/before-after.png)
 
 Smart TVs ship with tracking services, ad rows, auto-installers and apps you never use, all competing for about
-1 GB of RAM. This repository is a **playbook for AI agents** (Claude, or any AI coding agent that can run a terminal)
-plus the scripts and launcher they need. You paste one prompt; the agent backs up your TV, shows you what it found,
+1 GB of RAM. This repository is a **playbook for AI agents** — made for Claude, and usable by any AI coding agent —
+plus the scripts and launcher they need. You paste one sentence; the agent backs up your TV, shows you what it found,
 asks before touching anything personal, disables bloat in small verified batches, installs the launcher, and
 leaves everything reversible.
 
@@ -35,48 +35,57 @@ leaves everything reversible.
 |---|---|
 | ![Home](docs/img/home.png) | ![Inputs](docs/img/inputs.png) |
 
-## Quick start — just Claude (about 30–60 minutes)
+## How to do it
 
-You don't need to install anything else or type any commands: Claude downloads this kit, installs the tools it needs
-and does the work. You only do the two things it physically can't — turn on developer mode on the TV and press OK
-on the TV when it asks.
+### Option 1 (recommended): let Claude do it — no terminal needed
 
-**You need:** a laptop on the **same Wi-Fi as the TV** — Mac, Windows or Linux — with
-[Claude Code](https://claude.com/claude-code) installed (on a Mac you can also use the Claude desktop app with Claude Code).
+**Start here.** You don't type any commands or install anything yourself: Claude downloads this kit, installs the tools it
+needs and does all the work. You only do the two things it physically can't — turn on developer mode on the TV, and press
+OK on the TV when it asks. About 30–60 minutes.
+
+**You need:** a laptop on the **same Wi-Fi as the TV** with the **Claude desktop app** (Mac or Windows), using its
+**Code** tab — that's [Claude Code](https://claude.com/claude-code) running on your own computer, which is what lets it
+reach your TV. On Linux there's no desktop app, so run Claude Code with `claude`.
 
 1. **On the TV:** Settings → Device Preferences → About → press OK on **Build** 7 times.
    Then Developer options → turn on **USB debugging** (and **Network/ADB debugging** or **Wireless debugging** if listed).
-2. **On the laptop:** open Claude Code (Windows: in the Claude app or a terminal; Mac/Linux: run `claude` in a terminal)
-   and say:
+2. **On the laptop:** open the Claude app → **Code**, pick any folder on your computer, and say:
 
    > Debloat my Android TV using github.com/amirulmzlan/android-tv-debloat. My TV model is ______.
 
-3. **Answer its questions** (which apps you use, what goes in the dock…) and press **OK** on the
-   **"Allow USB debugging?"** prompt on the TV when Claude tells you to.
+3. **Answer its questions** (which apps you use, what goes in the dock…), say yes when it asks to install a tool, and
+   press **OK** on the **"Allow USB debugging?"** prompt on the TV when Claude tells you to.
 
-That's it. Claude backs up the TV first, shows you what it found, disables bloat in small checked batches,
-installs the new home screen, and switches debugging off at the end. Changed your mind? Tell Claude to undo it.
+That's it. Claude backs up the TV first, shows you what it found, disables bloat in small checked batches, installs the
+new home screen, and switches debugging off at the end. Changed your mind? Tell Claude to undo it.
 
 <details>
 <summary><b>Windows notes</b></summary>
 
-Claude Code on Windows runs these scripts in Git Bash (installed with Git for Windows, which Claude Code uses).
-Claude installs adb with `winget install Google.PlatformTools`. If Windows Firewall asks about `adb.exe`, allow it on
-private networks. Not yet tested on Windows — please report how it went.
+Claude Code on Windows runs the kit's scripts in Git Bash (Git for Windows, which Claude Code uses) and installs adb with
+`winget install Google.PlatformTools`. If Windows Firewall asks about `adb.exe`, allow it on private networks.
+Not yet tested on Windows — please report how it went.
 </details>
 
+### Only if Claude can't reach your TV: run its steps in a terminal
+
+Sometimes Claude runs somewhere that can't see devices on your home Wi-Fi — for example a cloud session, or a sandbox
+that blocks local network access. Claude checks this first and tells you. Then, instead of connecting itself, it writes
+each step as a small script in the kit's folder; you run it in **Terminal** (Mac/Linux) or **Git Bash** (Windows) and
+say "done", and Claude reads the result and screenshots before the next step
+([docs/NO-LAN-ACCESS.md](docs/NO-LAN-ACCESS.md)). Same result, just slower — so try Option 1 first.
+
 <details>
-<summary><b>Prefer to do it yourself, or using another AI agent?</b></summary>
+<summary><b>Option 2: do it yourself, or with another AI agent</b></summary>
 
 1. `git clone https://github.com/amirulmzlan/android-tv-debloat.git && cd android-tv-debloat` (or *Code → Download ZIP*).
 2. Install adb — macOS: `brew install --cask android-platform-tools` · Linux: `sudo apt install adb` ·
    Windows: `winget install Google.PlatformTools`.
 3. Turn on developer mode and USB debugging on the TV (step 1 above) and note its IP (Settings → Network).
-4. Start any AI coding agent that can run a terminal in this folder and paste the prompt from **[PROMPT.md](PROMPT.md)**,
+4. Start any AI coding agent that can run commands in this folder and paste the prompt from **[PROMPT.md](PROMPT.md)**,
    or run the scripts yourself in order (`scripts/01-…` to `scripts/06-…`, then `scripts/close-adb.sh`).
 
-The agent follows **[AGENTS.md](AGENTS.md)**. If it runs in a sandbox that can't reach your TV, it will write each step as a
-script for you to run instead ([docs/NO-LAN-ACCESS.md](docs/NO-LAN-ACCESS.md)).
+The agent follows **[AGENTS.md](AGENTS.md)**.
 </details>
 
 ## Just the launcher (no AI)
