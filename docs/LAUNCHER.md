@@ -6,7 +6,8 @@ fetches once every 3 hours at most, only while the home screen is showing.
 
 - Black background; greeting, large thin clock and date (Outfit font, SIL OFL).
 - Frosted pills: **Inputs** (dropdown of HDMI/AV via the TV input framework, plus **Live TV** when the TV has a Live TV app —
-  found automatically: MediaTek, Sony, Google Live Channels, AOSP, or whatever handles "view channels"), **Wi-Fi** (network name), **Settings**.
+  found automatically: MediaTek, Sony, Google Live Channels, AOSP, or whatever handles "view channels").
+  On boxes and sticks with nothing to switch to, the Inputs button is hidden. Also **Wi-Fi** (network name) and **Settings**.
 - A dock band of your apps; the focused one's name appears above it with a glow in the app's banner colour.
 - All other apps in a grid below (built-in helper apps without a TV entry are left out automatically); **Down** scrolls it up. One glass highlight springs between tiles.
 - Deterministic D-pad: Up/Down move exactly one row; Up from the dock goes to the top bar; ends don't fall through;

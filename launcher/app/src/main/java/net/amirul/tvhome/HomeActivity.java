@@ -115,7 +115,7 @@ public class HomeActivity extends Activity {
     final List<TileView> dockTiles = new ArrayList<>();
     TileView focusedTile;
 
-    int region = DOCK, topIdx = 0, dockIdx = 0, gridIdx = 0, menuIdx = 0;
+    int region = DOCK, topIdx = 0, dockIdx = 0, gridIdx = 0, menuIdx = 0, minTop = 0;
     String restoreGridPkg;
     boolean loaded, restored;
     SharedPreferences prefs;
@@ -175,6 +175,7 @@ public class HomeActivity extends Activity {
         loadWallpaper();
         refreshMatchCard();
         maybeFetchFixtures();
+        updateInputsPill();
         if (loaded) afterLayout(() -> applyFocus(false));
     }
 
@@ -563,7 +564,7 @@ public class HomeActivity extends Activity {
         int n = gridApps.size();
         switch (region) {
             case TOP:
-                if (k == L) { if (topIdx == 0) return; topIdx--; }
+                if (k == L) { if (topIdx <= minTop) return; topIdx--; }
                 else if (k == R) { if (topIdx == 2) return; topIdx++; }
                 else if (k == D || k == B) { if (!dockApps.isEmpty()) region = DOCK; else if (n > 0) region = GRID; else return; }
                 else if (isOk(k)) { pillAction(topIdx); return; }
@@ -756,19 +757,35 @@ public class HomeActivity extends Activity {
         else safeStart(new Intent(Settings.ACTION_SETTINGS));
     }
 
+    /** Physical inputs (HDMI, AV, ...) on this device. Empty on boxes and sticks, which are themselves an HDMI source. */
+    List<TvInputInfo> hardwareInputs() {
+        List<TvInputInfo> inputs = new ArrayList<>();
+        try {
+            TvInputManager tim = (TvInputManager) getSystemService(Context.TV_INPUT_SERVICE);
+            if (tim != null) for (TvInputInfo in : tim.getTvInputList()) {
+                if (in.getParentId() != null) continue;               // skip CEC child devices
+                int t = in.getType();
+                if (t == TvInputInfo.TYPE_HDMI || t == TvInputInfo.TYPE_COMPOSITE || t == TvInputInfo.TYPE_COMPONENT
+                        || t == TvInputInfo.TYPE_SVIDEO || t == TvInputInfo.TYPE_SCART || t == TvInputInfo.TYPE_VGA
+                        || t == TvInputInfo.TYPE_DVI) inputs.add(in);
+            }
+        } catch (Exception ignored) {}
+        return inputs;
+    }
+
+    /** Show the Inputs pill only when there is something to switch to (hides it on Mi Box, TV Stick, Shield...). */
+    void updateInputsPill() {
+        boolean has = !hardwareInputs().isEmpty() || liveTvIntent() != null;
+        pills[0].setVisibility(has ? View.VISIBLE : View.GONE);
+        minTop = has ? 0 : 1;
+        if (topIdx < minTop) topIdx = minTop;
+    }
+
     void openMenu() {
         menu.removeAllViews();
         menuRows.clear();
         menuActions.clear();
-        TvInputManager tim = (TvInputManager) getSystemService(Context.TV_INPUT_SERVICE);
-        List<TvInputInfo> inputs = new ArrayList<>();
-        if (tim != null) for (TvInputInfo in : tim.getTvInputList()) {
-            if (in.getParentId() != null) continue;               // skip CEC child devices
-            int t = in.getType();
-            if (t == TvInputInfo.TYPE_HDMI || t == TvInputInfo.TYPE_COMPOSITE || t == TvInputInfo.TYPE_COMPONENT
-                    || t == TvInputInfo.TYPE_SVIDEO || t == TvInputInfo.TYPE_SCART || t == TvInputInfo.TYPE_VGA
-                    || t == TvInputInfo.TYPE_DVI) inputs.add(in);
-        }
+        List<TvInputInfo> inputs = hardwareInputs();
         Collections.sort(inputs, (a, b) -> {
             int ta = a.getType() == TvInputInfo.TYPE_HDMI ? 0 : 1, tb = b.getType() == TvInputInfo.TYPE_HDMI ? 0 : 1;
             if (ta != tb) return ta - tb;

@@ -22,9 +22,27 @@ disabled. Please report back with an `examples/` file.
 - **TCL** Android TV and Google TV models
 - **Sony Bravia** Android TV / Google TV
 - **Philips**, **Sharp**, **Toshiba** (Android TV versions), **Hisense Android TV / Google TV** models (not VIDAA ones)
-- **Nvidia Shield TV**, **Chromecast with Google TV**, **Google TV Streamer**, onn. Google TV boxes and similar
+- Android TV **boxes and sticks** — see the next section
 - **Google TV caveat:** the setup wizard can take over Home and owns the Wi-Fi network saved during setup — the agent
   handles this (case D in [examples/README.md](../examples/README.md)), but expect one extra step.
+
+## 📦 Android TV boxes and sticks
+
+A box or stick runs the same Android TV / Google TV as a smart TV, so **the debloat and TvHome work the same way** —
+it just has no HDMI inputs or tuner of its own (it *is* the HDMI input), so TvHome hides the **Inputs** button there.
+Low-RAM sticks (about 1 GB) benefit the most. Not tested by us yet — please report back.
+
+| Device | System | Debloat | TvHome |
+|---|---|---|---|
+| **Xiaomi Mi Box S** (1st gen) | Android TV 9 (official update) | 🟢 should work | 🟢 should work |
+| **Xiaomi Mi Box** (2016) | Android TV 9 (official update) | 🟢 should work | 🟢 should work |
+| **Xiaomi Mi TV Stick** / **Mi TV Stick 4K** | Android TV 9 / newer | 🟢 should work | 🟢 should work |
+| **Xiaomi Mi Box S 2nd gen** | Google TV | 🟢 should work | 🟢 should work (Google TV setup-wizard step, case D) |
+| **Nvidia Shield TV**, **Chromecast with Google TV**, **Google TV Streamer**, onn. boxes | Android TV / Google TV | 🟢 should work | 🟢 should work |
+| No-brand boxes (X96, H96, T95…) | Often plain Android, not certified Android TV | 🟡 works via ADB | 🟡 if Android 9+; may have their own launcher or no Play Store |
+
+Check Settings → About for the Android version first: TvHome needs **Android 9 or newer** (most boxes have had the update).
+Some no-brand boxes have been reported to ship with unwanted preinstalled apps; disabling helps but can't guarantee a box is clean.
 
 ## 🟡 Partly — debloat yes, launcher no (or not reliably)
 

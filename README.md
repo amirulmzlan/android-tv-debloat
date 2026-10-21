@@ -7,7 +7,7 @@
 ![Launcher](https://img.shields.io/badge/launcher-Android%209%2B-555)
 ![Not Tizen/webOS](https://img.shields.io/badge/Samsung%20Tizen%20%C2%B7%20LG%20webOS-not%20supported-lightgrey)
 
-> ✅ **Works on Android TV.** Tested end to end on a real Android TV — Xiaomi Mi TV (MiTV-MSSP2, Android TV 9):
+> ✅ **Works on Android TV** (TVs, boxes and sticks). Tested end to end on a real Android TV — Xiaomi Mi TV (MiTV-MSSP2, Android TV 9):
 > 28 bloat packages disabled, ad-blocking DNS on, TvHome set as the home screen, and HDMI inputs, Live TV, the remote,
 > Bluetooth, Chromecast and all streaming apps still working. Other Android TV / Google TV brands use the same system
 > and should work the same way ([compatibility](docs/COMPATIBILITY.md)). Samsung (Tizen) and LG (webOS) TVs aren't Android,
@@ -57,7 +57,7 @@ each step as a script for you to run instead ([docs/NO-LAN-ACCESS.md](docs/NO-LA
 
 ## Just the launcher (no AI)
 
-Download **[TvHome.apk](https://github.com/amirulmzlan/android-tv-debloat/releases/latest/download/TvHome.apk)** from the [latest release](https://github.com/amirulmzlan/android-tv-debloat/releases/latest) (also in [`dist/`](dist/); SHA-256 in `dist/TvHome.apk.sha256`), then:
+Download **[TvHome.apk](https://github.com/amirulmzlan/android-tv-debloat/raw/main/dist/TvHome.apk)** (in [`dist/`](dist/), SHA-256 in `TvHome.apk.sha256`), then:
 ```
 adb connect <tv-ip>:5555
 adb install -r TvHome.apk
@@ -98,8 +98,8 @@ Without a computer: Settings → Apps → See all apps → Show system apps → 
 
 ## Which TVs?
 
-**Android TV and Google TV only** — Xiaomi, TCL, Sony, Philips, Hisense (Android/Google TV models), Nvidia Shield,
-Chromecast with Google TV and similar. **Samsung (Tizen), LG (webOS), Roku, VIDAA and Apple TV can't** — they aren't
+**Android TV and Google TV only** — TVs (Xiaomi, TCL, Sony, Philips, Hisense Android/Google TV models…) and
+**boxes and sticks** (Xiaomi Mi Box S, Mi TV Stick, Nvidia Shield, Chromecast with Google TV…). **Samsung (Tizen), LG (webOS), Roku, VIDAA and Apple TV can't** — they aren't
 Android. Full list, partial cases (older Android, China-market firmware, Fire TV) and alternatives:
 **[docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)**.
 
