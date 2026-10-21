@@ -136,7 +136,7 @@ Without a computer: Settings → Apps → See all apps → Show system apps → 
 
 **Android TV and Google TV only** — TVs (Xiaomi, TCL, Sony, Philips, Hisense Android/Google TV models…) and
 **boxes and sticks** (Xiaomi Mi Box S, Mi TV Stick, Nvidia Shield, Chromecast with Google TV…). **Samsung (Tizen), LG (webOS), Roku, VIDAA and Apple TV can't** — they aren't
-Android. Full list, partial cases (older Android, China-market firmware, Fire TV) and alternatives:
+Android. New Fire TV sticks with **Vega OS** can't either. Full list, partial cases (older Android, China-market firmware, older Fire TV) and alternatives:
 **[docs/COMPATIBILITY.md](docs/COMPATIBILITY.md)**.
 
 | Tested | Android | Result |

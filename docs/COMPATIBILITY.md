@@ -50,7 +50,7 @@ Some no-brand boxes have been reported to ship with unwanted preinstalled apps; 
 |---|---|
 | Android TV **older than Android 9** | TvHome needs Android 9+ (debloat still works on 4.3+; 4.2 needs the Settings-tapping workaround in TROUBLESHOOTING) |
 | **China-market** Xiaomi/other sets with locked firmware | Some reject every sideloaded APK, or any home-screen app not signed by the maker (cases B/C) — reported, varies by firmware |
-| **Amazon Fire TV** (Fire OS is Android) | ADB works and some apps can be disabled, but Amazon actively blocks replacement home screens; workarounds break with updates. Not supported here |
+| **Amazon Fire TV with Fire OS** (older sticks, Lite, 4K, 4K Max, Cube — Fire OS is Android) | ADB works and some apps can be disabled (Amazon blocks many of its own), but Amazon actively blocks replacement home screens; workarounds break with updates. Not supported here |
 
 ## ❌ Can't — not Android
 
@@ -58,6 +58,7 @@ Some no-brand boxes have been reported to ship with unwanted preinstalled apps; 
 |---|---|---|
 | **Tizen** | Samsung | Developer Mode only lets developers install their own Tizen web apps from Tizen Studio — it can't remove preinstalled apps or replace the home screen. In the TV's own Settings, turn off viewing-information / interest-based-ad and voice-data options in the privacy section, and use an ad-blocking DNS on your router. Or plug in a Google TV / Android TV box (see 🟢) and use that as your TV's home screen. |
 | **webOS** | LG | Same: privacy toggles in Settings, router DNS, or an Android TV box |
+| **Vega OS** | New Amazon Fire TV sticks (Fire TV Stick 4K Select onwards) | Not Android and no sideloading at all (confirmed by Amazon). Use a Google TV / Android TV stick instead |
 | **Roku OS**, **VIDAA**, **SmartCast**, **tvOS** | Roku TVs, Hisense/Toshiba VIDAA, Vizio, Apple TV | Same |
 
 > An Android TV / Google TV box on HDMI is the simplest way to get all of this on a Samsung, LG or any other TV:
