@@ -24,6 +24,7 @@ reach the TV (below) — and if so, tell them plainly why before switching.
 4. **Never disable what the TV needs to work**: TV input framework / HDMI / tuner (`*tvinput*`, `*tvcenter*`,
    `*tv.settings*`, vendor TV services), the input/source menu, remote and Bluetooth pairing, the keyboard,
    `com.android.vending`, `com.google.android.gms`, `com.google.android.gsf`, SystemUI, Settings, providers.
+   **The active screensaver** (`settings get secure screensaver_components`) — without one the TV sleeps when idle.
    Manufacturer names are often meaningless: run `dumpsys package <pkg>` and look at its activities, services
    and receivers. If it's still unclear, ask the person, or leave it alone.
 5. **Small batches** (3-8 packages), one `pm` call per shell call, then Home + screenshot + Settings check.

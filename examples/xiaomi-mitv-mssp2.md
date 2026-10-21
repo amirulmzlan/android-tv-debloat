@@ -17,7 +17,7 @@ Tested end to end. Use as a template for other Xiaomi/PatchWall TVs, but always 
 | Telemetry | `com.miui.tv.analytics`, `com.xiaomi.statistic`, `com.google.android.tv.bugreportsender`, `com.google.android.feedback` |
 | Ads & rows | `com.mitv.tvhome.atv` (PatchWall), `com.mitv.tvhome.michannel` (Mi Channel row), `com.xm.webcontent`, `com.google.android.tvrecommendations`, `com.google.android.leanbacklauncher.recommendations`, `android.autoinstalls.config.xiaomi.amelie` (Play Auto Install) |
 | Background | `com.android.printspooler`, `com.google.android.syncadapters.calendar`, `com.google.android.syncadapters.contacts` |
-| Preloaded | `com.mitv.gallery` (incl. WallPaper), `com.xiaomi.mimusic2`, `com.xiaomi.mitv.mediaexplorer`, `com.mitv.dream`, `com.google.android.play.games`, `org.chromium.webview_shell`, `com.google.android.backdrop` |
+| Preloaded | `com.mitv.gallery` (incl. WallPaper), `com.xiaomi.mimusic2`, `com.xiaomi.mitv.mediaexplorer`, `com.mitv.dream`, `com.google.android.play.games`, `org.chromium.webview_shell` — **not** `com.google.android.backdrop` (see notes) |
 | Person's choice | streaming apps they didn't use, `com.google.android.katniss` + `com.google.android.speech.pumpkin` (Assistant — remote mic stops working), `com.xiaomi.mitv.updateservice` |
 | Launcher step | `com.google.android.tvlauncher` |
 
@@ -32,6 +32,9 @@ pairing screen** and a global key receiver — looks like bloat, isn't), `com.go
 `com.google.android.tungsten.setupwraith` (owns the Wi-Fi network).
 
 ## Notes
+
+- **Lesson learned:** Ambient Mode (`com.google.android.backdrop`) was the active screensaver. Disabling it (and the Mi
+  screensaver `com.mitv.dream`) left none, so the TV went to sleep after 5 idle minutes. Re-enabling Ambient Mode fixed it.
 
 - The TV goes to standby on its own during long sessions; that looked like a crash once — `uptime` proved it wasn't.
 - Load average sits around 100 on this MediaTek kernel at all times; it's not CPU load.

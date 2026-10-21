@@ -26,12 +26,19 @@ Legend: ✅ verified on a real TV in this repo · ⚠️ common knowledge / repo
 | `com.google.android.leanbacklauncher.recommendations` ✅ | Recommendations for the old Leanback launcher | Disable |
 | `com.google.android.feedback` ✅, `com.google.android.tv.bugreportsender` ✅ | Feedback / bug-report senders | Disable |
 | `android.autoinstalls.config.<maker>` ✅ | Play Auto Install — pushes apps onto the TV | Disable |
-| `com.google.android.backdrop` ✅ | Ambient mode screensaver | Disable if not wanted |
+| `com.google.android.backdrop` ✅ | Ambient mode screensaver | **Keep if it's the active screensaver** — see below |
 | `com.google.android.play.games` ✅, `com.google.android.videos` ✅, `com.google.android.youtube.tvmusic` ✅ | Play Games, Google TV/Play Movies, YouTube Music | **Ask** |
 | `com.google.android.katniss` ✅, `com.google.android.speech.pumpkin` ✅ | Google Assistant / voice search — remote mic stops working | **Ask** |
 | `com.google.android.apps.mediashell` ✅ | Chromecast built-in | **Ask** |
 | `com.google.android.syncadapters.calendar` / `.contacts` ✅, `com.android.printspooler` ✅ | Sync / printing, unused on a TV | Disable |
 | `com.google.android.tvlauncher` ✅ | Stock Android TV home — disable only after TvHome works | Launcher step |
+
+### ⚠️ Screensavers: check before disabling
+
+Run `settings get secure screensaver_components`. If it names the package you're about to disable (often
+`com.google.android.backdrop` = Ambient Mode, or the maker's screensaver such as Xiaomi's `com.mitv.dream`), **don't
+disable it** — or set another screensaver first. With no screensaver left, Android goes straight to sleep after
+`screen_off_timeout` (often 5 minutes), so the TV seems to switch itself off whenever it's idle. ✅ Hit on the tested Xiaomi.
 
 ## Google TV
 

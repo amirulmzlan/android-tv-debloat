@@ -32,6 +32,11 @@ Store updates, `adb uninstall <pkg>` first (removes only the updates), then Disa
 **Something stopped working after a batch.** `scripts/restore.sh <pkg>` re-enables one package; bisect the
 last batch. The TV going into standby during a batch is not a crash — check `uptime` with `scripts/status.sh`.
 
+**The TV switches itself off after a few idle minutes.** The active screensaver was disabled. Check
+`settings get secure screensaver_components`, re-enable that package (`scripts/restore.sh <package>`), and make sure
+`screensaver_enabled=1` and `screensaver_activate_on_sleep=1`. Or choose another screensaver in Settings → Device
+Preferences → Screen saver.
+
 **Bluetooth dropped after a batch.** Usually the phone, not the batch: reconnect first, then bisect if it repeats.
 
 ## Launcher
