@@ -57,7 +57,7 @@ each step as a script for you to run instead ([docs/NO-LAN-ACCESS.md](docs/NO-LA
 
 ## Just the launcher (no AI)
 
-Download **[TvHome.apk](https://github.com/amirulmzlan/android-tv-debloat/raw/main/dist/TvHome.apk)** (in [`dist/`](dist/), SHA-256 in `TvHome.apk.sha256`), then:
+Download **[TvHome.apk](https://github.com/amirulmzlan/android-tv-debloat/releases/latest/download/TvHome.apk)** from the [latest release](https://github.com/amirulmzlan/android-tv-debloat/releases/latest) (also in [`dist/`](dist/); SHA-256 in `dist/TvHome.apk.sha256`), then:
 ```
 adb connect <tv-ip>:5555
 adb install -r TvHome.apk
